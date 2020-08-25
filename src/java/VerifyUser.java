@@ -1,72 +1,68 @@
-
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mypkg.Utility;
 
-public class RegistrationServlet extends HttpServlet {
-
-    private Connection con; private PreparedStatement ps;
+public class VerifyUser extends HttpServlet {
+    private Connection con; private PreparedStatement ps1;
     
-    //called while loading
-    public void init() {
+    public void init(){
         try{
-        //Class.forName("com.mysql.jdbc.Driver");
-        //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/coviddata", "root", "root");
-        con=Utility.connect();
-        String sql = "INSERT INTO users VALUES(?,?,?,?,?)";
-        ps = con.prepareStatement(sql);
+            con=Utility.connect();
+            ps1=con.prepareStatement("SELECT * FROM users where email=? AND password=?");
         }catch(Exception e){
             e.printStackTrace();
         }
     }
-
-    //called just before unloading
-    public void destroy() {
+    public void destroy(){
         try{
-        con.close();
+            con.close();
         }catch(Exception e){
             e.printStackTrace();
         }
     }
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            PrintWriter out=response.getWriter();
+            //VerifyUser?uid=aaa%40gmail.com&password=ssi&utype=enduser
+            String id=request.getParameter("uid");
+            String pw=request.getParameter("password");
+            String utype=request.getParameter("utype");
+            
+            if(utype.equals("super-admin")){
+                if(id.equals("sadmin") && pw.equals("ssi")){
+                    out.println("Welcome Super Admin");
+                }else{
+                    out.println("Invalid Super Admin Account");
+                }
+            }else if(utype.equals("state-admin")){
+                out.println("Welcome State Admin");
+            }else if(utype.equals("enduser")){
+               //we need to authenticate using DB 
+               try{
+                   ps1.setString(1, id);
+                   ps1.setString(2, pw);
+                   ResultSet rs=ps1.executeQuery();
+                   boolean found=rs.next(); 
+                   if(found){
+                       out.println("WELCOME END USER");
+                   }else{
+                       out.println("INVALID END USER ACCOUNT");
+                   }
+               }catch(Exception e){
+                   out.println(e);
+               }
+            }
+            
 
-        PrintWriter out = response.getWriter();
-        //request-read
-        //?uid=aaa%40gmail.com&password=ssi&name=abc&address=indore&mobile=9094599445
-        String userid = request.getParameter("uid");
-        String password = request.getParameter("password");
-        String name = request.getParameter("name");
-        String address = request.getParameter("address");
-        String mobile = request.getParameter("mobile");
-        //process (store the values to DB)
-        //now we will store the values into DB using jdbc
-        try {
-            ps.setString(1, userid);
-            ps.setString(2, password);
-            ps.setString(3, name);
-            ps.setString(4, address);
-            ps.setString(5, mobile);
-            ps.executeUpdate();
-         
-            //response
-            out.println("<html>");
-            out.println("<body>");
-            out.println("<h3>Registered-Successfully</h3>");
-            out.println("<h4><a href=index.jsp>Login-Now</a></h4>");
-            out.println("</body>");
-            out.println("</html>");
 
-        } catch (Exception e) {
-            out.println(e);
-        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
