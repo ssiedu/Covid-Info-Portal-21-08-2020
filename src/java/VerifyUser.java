@@ -3,6 +3,7 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,12 +38,18 @@ public class VerifyUser extends HttpServlet {
             
             if(utype.equals("super-admin")){
                 if(id.equals("sadmin") && pw.equals("ssi")){
-                    out.println("Welcome Super Admin");
+                    //we want this request to be forwarded to saddashboard.jsp
+                   //response.sendRedirect("sadmindashboard.jsp");
+                    RequestDispatcher rd=request.getRequestDispatcher("sadmindashboard.jsp");
+                    rd.forward(request, response);
                 }else{
-                    out.println("Invalid Super Admin Account");
+                    out.println("<html><body>");
+                    out.println("<h3>Invalid Super Admin Account</h3>");
+                    out.println("<h4><a href=index.jsp>Try-Again</a></h4>");
+                    out.println("</body></html>");
                 }
             }else if(utype.equals("state-admin")){
-                out.println("Welcome State Admin");
+                response.sendRedirect("stadmindashboard.jsp");
             }else if(utype.equals("enduser")){
                //we need to authenticate using DB 
                try{
@@ -51,9 +58,12 @@ public class VerifyUser extends HttpServlet {
                    ResultSet rs=ps1.executeQuery();
                    boolean found=rs.next(); 
                    if(found){
-                       out.println("WELCOME END USER");
+                       response.sendRedirect("userdashboard.jsp");
                    }else{
-                       out.println("INVALID END USER ACCOUNT");
+                    out.println("<html><body>");
+                    out.println("<h3>Invalid User Account</h3>");
+                    out.println("<h4><a href=index.jsp>Try-Again</a></h4>");
+                    out.println("</body></html>");
                    }
                }catch(Exception e){
                    out.println(e);
