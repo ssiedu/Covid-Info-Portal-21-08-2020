@@ -2,7 +2,14 @@
     <body>
         <h3>Super-Admin-Dashboard</h3>
         <hr>
-            //all the links available for super-admin
+        <pre>
+            <a href="state-account.jsp">Create-State-Account</a>
+            <a href="">View-State-Accounts</a>
+            <a href="">View-User-Account</a>
+            <a href="">View-All-State-Data</a>
+            <a href="">Logout</a>
+        </pre>
+            
         <hr>
     </body>
 </html>

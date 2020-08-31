@@ -8,6 +8,10 @@
         <servlet-name>VerifyUser</servlet-name>
         <servlet-class>VerifyUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StateAccountCreationServlet</servlet-name>
+        <servlet-class>StateAccountCreationServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/RegistrationServlet</url-pattern>
@@ -15,6 +19,10 @@
     <servlet-mapping>
         <servlet-name>VerifyUser</servlet-name>
         <url-pattern>/VerifyUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StateAccountCreationServlet</servlet-name>
+        <url-pattern>/StateAccountCreationServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
