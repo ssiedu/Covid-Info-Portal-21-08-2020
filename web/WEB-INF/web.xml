@@ -12,6 +12,10 @@
         <servlet-name>StateAccountCreationServlet</servlet-name>
         <servlet-class>StateAccountCreationServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateStateAdminProfile</servlet-name>
+        <servlet-class>UpdateStateAdminProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/RegistrationServlet</url-pattern>
@@ -23,6 +27,10 @@
     <servlet-mapping>
         <servlet-name>StateAccountCreationServlet</servlet-name>
         <url-pattern>/StateAccountCreationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStateAdminProfile</servlet-name>
+        <url-pattern>/UpdateStateAdminProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
