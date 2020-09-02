@@ -1,4 +1,13 @@
 /*
+CREATE TABLE covidinfo
+(sno integer primary key AUTO_INCREMENT,
+idate Date,
+state varchar(10),
+total integer,
+active integer,
+deaths integer,
+userid varchar(10)
+)
 
 CREATE TABLE stateadmins
 (userid varchar(20) primary key,
