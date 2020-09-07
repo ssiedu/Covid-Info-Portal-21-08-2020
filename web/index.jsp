@@ -13,6 +13,9 @@
             <tr>
                 <td>UserType</td><td><select name="utype"><option>enduser</option><option>state-admin</option><option>super-admin</option></select></td>
             </tr>
+             <tr>
+                 <td>Remember-Me</td><td><input type="checkbox" name="save" value="yest"/></td>
+            </tr>
             <tr>
                 <td><input type="submit" value="Login"/></td><td><input type="reset"/></td>
             </tr>

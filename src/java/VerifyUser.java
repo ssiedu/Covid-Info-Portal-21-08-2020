@@ -36,7 +36,7 @@ public class VerifyUser extends HttpServlet {
             String id=request.getParameter("uid");
             String pw=request.getParameter("password");
             String utype=request.getParameter("utype");
-            
+            System.out.println("Your Last Login Was : ");
             if(utype.equals("super-admin")){
                 if(id.equals("sadmin") && pw.equals("ssi")){
                     //we want this request to be forwarded to saddashboard.jsp

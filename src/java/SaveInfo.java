@@ -8,8 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mypkg.Utility;
-import static org.apache.tomcat.jni.Buffer.address;
-import static org.eclipse.jdt.internal.compiler.parser.Parser.name;
 
 public class SaveInfo extends HttpServlet {
 
