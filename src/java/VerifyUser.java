@@ -8,6 +8,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import mypkg.Utility;
 
 public class VerifyUser extends HttpServlet {
@@ -55,6 +56,7 @@ public class VerifyUser extends HttpServlet {
                 ps2.setString(1, id);
                 ps2.setString(2, pw);
                 ResultSet rs=ps2.executeQuery();
+                
                 boolean found=rs.next();
                 if(found){//credentials are correct (id/pw)
                     String status=rs.getString("status");
@@ -81,6 +83,10 @@ public class VerifyUser extends HttpServlet {
                 out.println("</html>");
                 }else{
                 //if-enabled-then-we-will-display-dashboard
+                    //storing the id to session, state into session
+                    HttpSession session=request.getSession();
+                    session.setAttribute("userid", id);
+                    session.setAttribute("state", rs.getString("state"));
                     response.sendRedirect("stadmindashboard.jsp");
                 }
                 }else{

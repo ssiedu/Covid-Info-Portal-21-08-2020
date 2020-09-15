@@ -7,7 +7,7 @@
             <a href="">View-State-Accounts</a>
             <a href="">View-User-Account</a>
             <a href="">View-All-State-Data</a>
-            <a href="">Logout</a>
+            <a href="EndSession">Logout</a>
         </pre>
             
         <hr>

@@ -20,6 +20,18 @@
         <servlet-name>SaveInfo</servlet-name>
         <servlet-class>SaveInfo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EndSession</servlet-name>
+        <servlet-class>EndSession</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StateDataServlet</servlet-name>
+        <servlet-class>StateDataServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllDataServlet</servlet-name>
+        <servlet-class>AllDataServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegistrationServlet</servlet-name>
         <url-pattern>/RegistrationServlet</url-pattern>
@@ -39,6 +51,18 @@
     <servlet-mapping>
         <servlet-name>SaveInfo</servlet-name>
         <url-pattern>/SaveInfo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EndSession</servlet-name>
+        <url-pattern>/EndSession</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StateDataServlet</servlet-name>
+        <url-pattern>/StateDataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllDataServlet</servlet-name>
+        <url-pattern>/AllDataServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
