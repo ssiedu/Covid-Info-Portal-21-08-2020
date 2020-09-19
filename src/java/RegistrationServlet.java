@@ -3,11 +3,11 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import mypkg.Utility;
 
 public class RegistrationServlet extends HttpServlet {
 
@@ -18,7 +18,9 @@ public class RegistrationServlet extends HttpServlet {
         try{
         //Class.forName("com.mysql.jdbc.Driver");
         //con = DriverManager.getConnection("jdbc:mysql://localhost:3306/coviddata", "root", "root");
-        con=Utility.connect();
+        //con=Utility.connect();
+        ServletContext context=getServletContext();
+        con=(Connection)context.getAttribute("dbcon");
         String sql = "INSERT INTO users VALUES(?,?,?,?,?)";
         ps = con.prepareStatement(sql);
         }catch(Exception e){
@@ -28,11 +30,13 @@ public class RegistrationServlet extends HttpServlet {
 
     //called just before unloading
     public void destroy() {
+        /*
         try{
         con.close();
         }catch(Exception e){
             e.printStackTrace();
         }
+        */
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)

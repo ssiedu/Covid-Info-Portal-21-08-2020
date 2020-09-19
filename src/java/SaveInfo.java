@@ -3,12 +3,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import mypkg.Utility;
 
 public class SaveInfo extends HttpServlet {
 
@@ -17,7 +17,11 @@ public class SaveInfo extends HttpServlet {
     //called while loading
     public void init() {
         try{
-        con=Utility.connect();
+        //con=Utility.connect();    //this will create a new connection
+        //we want to access that connection which was established during startup.
+        //we will get the connection from context object.
+        ServletContext context=getServletContext();
+        con=(Connection)context.getAttribute("dbcon");
         String sql = "INSERT INTO covidinfo(idate,state,total,active,deaths,userid) VALUES(now(),?,?,?,?,?)";
         ps = con.prepareStatement(sql);
         }catch(Exception e){
@@ -27,11 +31,7 @@ public class SaveInfo extends HttpServlet {
 
     //called just before unloading
     public void destroy() {
-        try{
-        con.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
+       //
     }
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
