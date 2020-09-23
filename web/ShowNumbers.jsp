@@ -1,4 +1,6 @@
-<%
+
+<jsp:scriptlet>
+    int x=10;
     String state=request.getParameter("t1");
     String contact="";
     switch(state){
@@ -15,7 +17,7 @@
             contact="12345678";
         break;
     }
-%>
+</jsp:scriptlet>
 <html>
     <body>
         <h3>HelpLine Number For Your State : <% out.println(state); %> </h1>
@@ -25,3 +27,4 @@
         <a href="index.jsp">Home</a>
     </body>
 </html>
+
