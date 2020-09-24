@@ -2,7 +2,8 @@
     <body>
         <h3>User-Dashboard</h3>
         <hr>
-            //all the links available for end-users
+        <a href="showcases.jsp">Covid-Cases</a>
+        
         <hr>
     </body>
 </html>
