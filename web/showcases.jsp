@@ -1,3 +1,5 @@
+<%@page import="java.sql.*, mypkg.Utility" contentType="text/html" language="java" errorPage="myerrorpage.jsp" %>
+    
 <%!
     public int x;
     public int deathPercentage(int totalCases, int totalDeaths){
@@ -8,9 +10,9 @@
 <%
     int y;
     String sql="SELECT * FROM covidinfo";
-    java.sql.Connection con=mypkg.Utility.connect();
-    java.sql.PreparedStatement ps=con.prepareStatement(sql);
-    java.sql.ResultSet rs=ps.executeQuery();
+    Connection con=Utility.connect();
+    PreparedStatement ps=con.prepareStatement(sql);
+    ResultSet rs=ps.executeQuery();
 %>
 <html>
     <body>

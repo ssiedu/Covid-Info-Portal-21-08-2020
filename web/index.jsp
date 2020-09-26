@@ -26,3 +26,5 @@
         <a href="helpline.jsp">Covid-Helpline-Nos</a>
     </body>
 </html>
+
+<%@include file="info.jsp" %> 
