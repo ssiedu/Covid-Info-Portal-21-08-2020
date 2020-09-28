@@ -1,6 +1,8 @@
+<%@taglib  uri="/WEB-INF/tlds/mylib.tld" prefix="data" %>
 <html>
     <body>
         <h3>Covid-Information-Portal</h3>
+        <data:totalcases/>
         <hr>
         <form action="VerifyUser" method="get">
             <table border="0">

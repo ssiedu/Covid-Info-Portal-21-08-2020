@@ -1,3 +1,4 @@
+<%@taglib  uri="/WEB-INF/tlds/mylib.tld" prefix="data" %>
 <%@page import="java.sql.*, mypkg.Utility" contentType="text/html" language="java" errorPage="myerrorpage.jsp" %>
     
 <%!
@@ -45,6 +46,7 @@
     }
 %>
         </table>
+        <data:totalcases/>
         <hr>
         <a href="userdashboard.jsp">Dashboard</a>
     </body>
